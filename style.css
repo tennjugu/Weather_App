@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Roboto&display=swap');
+
+body {
+    font-family: 'Cabin', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #083344;
+}
+
+.container {
+    background-color: #083344;
+}
+
+form{
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: #fff;
+    margin-right: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.07);
+}
+
+.clear-button {
+    background-color: #ccc;
+    color: #333;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.clear-button:hover {
+    background-color: #999;
+    transform: scale(1.07);
+}
