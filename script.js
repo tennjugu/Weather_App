@@ -100,8 +100,9 @@ function displayWeatherInfo(weatherInfo) {
                     <h3 class='temp-f'>L: ${dayReport.day.mintemp_f}°f</h3>
                 </div>`
             weatherResults.appendChild(weatherDisplay)
-        });       
+        })     
     }
+    toggleTemp()
 }
 
 function onError(error){
@@ -132,4 +133,39 @@ function resetDisplay(){
     if(weatherDisplayDiv){
         weatherDisplayDiv.remove()
     }
+}
+
+function toggleTemp(){
+    const cTemp = document.querySelectorAll('.c-temp')
+    const fTemp = document.querySelectorAll('.f-temp')
+    const currentTempC = document.querySelector('.current-temp-c')
+    const currentTempF = document.querySelector('.current-temp-f')
+    
+    cTemp.forEach((element) => {
+        element.addEventListener('click', () => {
+            element.style.display = 'none'
+            const correspondingFTemp = element.nextElementSibling
+            correspondingFTemp.style.display = 'flex'
+        })
+    })
+    
+    fTemp.forEach((element) => {
+        element.addEventListener('click', () => {
+            element.style.display = 'none'
+            const correspondingCTemp = element.previousElementSibling
+            correspondingCTemp.style.display = 'flex'
+        })
+    })
+
+    currentTempC.addEventListener('click', () =>{
+        currentTempC.style.display = 'none'
+        const correspondingTempF = currentTempC.nextElementSibling
+        correspondingTempF.style.display = 'flex'
+    })
+
+    currentTempF.addEventListener('click', () =>{
+        currentTempF.style.display = 'none'
+        const correspondingTempF = currentTempF.previousElementSibling
+        correspondingTempF.style.display = 'flex'
+    })
 }
