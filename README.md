@@ -34,8 +34,6 @@ using promises. It provides users with a 3-day weather forecast and a current/re
 
 ## API Key Disclaimer
 
-**API Key Disclaimer:**
-
 Please be aware that the API key used in this project has been hidden. It will not be available for use or testing. In order to successfully use and interact with this Weather App, you must obtain your own API key from the respective service provider. I recommend following their official documentation to acquire the necessary credentials.
 
 Please respect the terms of use and licensing agreements associated with the API key and use it responsibly. This project is intended for educational and informational purposes only.
@@ -50,10 +48,11 @@ To get an API key for a weather service provider, follow these steps:
 
 3. Generate an API key by following their API documentation.
 
-4. Replace the placeholder API key in the JavaScript code with your own key.
+4. Replace config.API_KEY in the JavaScript code with your own key.
 
 ```javascript
 const myKey = config.API_KEY
+
 ```
 
 5. Save the changes and retest the Weather App with your own API key.
