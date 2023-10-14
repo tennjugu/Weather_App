@@ -17,7 +17,7 @@ using promises. It provides users with a 3-day weather forecast and a current/re
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/tennjugu/Weather-App.git
+   git clone https://github.com/tennjugu/Weather_App.git
    ```
 
 2. Open the project folder in your favorite code editor.
