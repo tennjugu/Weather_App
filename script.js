@@ -1,3 +1,32 @@
+const searchBtn = document.querySelector('.search-button')
+const clearBtn = document.querySelector('.clear-button')
+
+searchBtn.addEventListener('click', (event) =>{
+    event.preventDefault()
+    errorDisplay()
+    resetDisplay()
+    getWeatherInfo()
+    .then(displayWeatherInfo)
+    .catch(onError)
+})
+
+clearBtn.addEventListener('click', (event) =>{
+    event.preventDefault()
+    clearSearch()
+})
+
+form = document.querySelector('form')
+const daysInput = document.querySelector('.num-days')
+form.addEventListener('change',() =>{
+    const searchInput = document.getElementById('weather-type').value
+    if(searchInput === 'forecast'){
+        daysInput.style.display = 'block'
+    }
+    else{
+        daysInput.style.display = 'none'
+    }
+})
+
 async function getWeatherInfo() {
     try {
         const searchInput = document.getElementById('location').value
@@ -72,5 +101,35 @@ function displayWeatherInfo(weatherInfo) {
                 </div>`
             weatherResults.appendChild(weatherDisplay)
         });       
+    }
+}
+
+function onError(error){
+    const container = document.querySelector('.container')
+    const errorDisplay = document.createElement('h3')
+    errorDisplay.className = 'error'
+    errorDisplay.innerText = error
+    errorDisplay.style.color = 'red'
+    container.appendChild(errorDisplay)
+}
+
+function errorDisplay(){
+    const errorDisplay = document.querySelector('.error')
+    if (errorDisplay){
+        errorDisplay.remove()
+    }
+}
+
+function clearSearch(){
+    form = document.querySelector('form')
+    const days = document.querySelector('.num-days')
+    form.reset()
+    days.style.display = 'none'
+}
+
+function resetDisplay(){
+    const weatherDisplayDiv = document.querySelector('.weatherDisplay')
+    if(weatherDisplayDiv){
+        weatherDisplayDiv.remove()
     }
 }
