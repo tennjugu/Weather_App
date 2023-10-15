@@ -93,7 +93,7 @@ button {
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-    gap: 10px;
+    gap: 50px;
     justify-items: center; 
     align-items: start;
     max-height: 500px;
