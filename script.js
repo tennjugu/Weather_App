@@ -44,7 +44,7 @@ async function getWeatherInfo() {
         if (weatherChoice) {
             const response =  await fetch( url + `${weatherChoice}.json?` + `key=${myKey}` + `&q=${searchInput}` + `&days=${days}`)
             const updateddata = getFetchedData(response)
-            return updateddata;
+            return updateddata
         } 
     } catch (error) {
         console.log(error)
