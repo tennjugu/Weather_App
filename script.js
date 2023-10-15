@@ -57,7 +57,7 @@ function getFetchedData(response) {
         const errorData = response.json()
         throw new Error(errorData.error.message)
     }
-    return response.json();
+    return response.json()
 }
 
 function displayWeatherInfo(weatherInfo) {
@@ -66,12 +66,12 @@ function displayWeatherInfo(weatherInfo) {
     weatherResults.innerHTML = ''
     
     if (weatherInfo.current) {
-        const currentWeather = weatherInfo.current;
-        locationDetails = weatherInfo?.location;
+        const currentWeather = weatherInfo.current
+        locationDetails = weatherInfo?.location
         const weatherDisplay = document.createElement('div')
-        weatherDisplay.className = 'weatherDisplay';
         const cTempRound = Math.round(currentWeather.temp_c)
         const fTempRound = Math.round(currentWeather.temp_f)
+        weatherDisplay.className = 'weatherDisplay'
         weatherDisplay.innerHTML = `
             <h5>${locationDetails?.name || ''},  ${locationDetails?.country || ''}</h5>
             <h3 class= 'current-temp-c'>${cTempRound}°c</h3>
@@ -83,8 +83,8 @@ function displayWeatherInfo(weatherInfo) {
     }  
     if (weatherInfo.forecast) {
         forecastdays = weatherInfo.forecast.forecastday
-        locationDetails = weatherInfo?.location
-        forecastdays.forEach((dayReport) => {
+        locationDetails = weatherInfo?.location;
+                forecastdays.forEach((dayReport) => {
             dayTemp = dayReport.day
             const weatherDisplay = document.createElement('div')
             weatherDisplay.className = 'weatherDisplay'
