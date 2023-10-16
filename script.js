@@ -16,56 +16,50 @@ clearBtn.addEventListener('click', (event) =>{
 })
 
 function toggleForecastTempC(element) {
-    element.style.display = 'none'
-    const correspondingFTemp = element.nextElementSibling
-    correspondingFTemp.style.display = 'flex'
+    const cTemp = document.querySelectorAll('.c-temp')
+    cTemp.forEach((element) => {
+        element.addEventListener('click', () => {
+            element.style.display = 'none'
+            const correspondingFTemp = element.nextElementSibling
+            correspondingFTemp.style.display = 'flex'
+        })
+    })
 }
 
 function toggleForecastTempF(element) {
-    element.style.display = 'none'
-    const correspondingCTemp = element.previousElementSibling
-    correspondingCTemp.style.display = 'flex'
+    const fTemp = document.querySelectorAll('.f-temp')
+    fTemp.forEach((element) => {
+        element.addEventListener('click', () => {
+            element.style.display = 'none'
+            const correspondingCTemp = element.previousElementSibling
+            correspondingCTemp.style.display = 'flex'
+        })
+    })
 }
 
 function toggleCurrentTempC() {
     const currentTempC = document.querySelector('.current-temp-c')
-    currentTempC.style.display = 'none'
-    const correspondingTempC = currentTempC.nextElementSibling
-    correspondingTempC.style.display = 'flex'
+    currentTempC.addEventListener('click', () => {
+        currentTempC.style.display = 'none'
+        const correspondingTempC = currentTempC.nextElementSibling
+        correspondingTempC.style.display = 'flex'
+    })
 }
 
 function toggleCurrentTempF() {
     const currentTempF = document.querySelector('.current-temp-f')
-    currentTempF.style.display = 'none'
-    const correspondingTempF = currentTempF.previousElementSibling
-    correspondingTempF.style.display = 'flex'
+    currentTempF.addEventListener('click', () => {
+        currentTempF.style.display = 'none'
+        const correspondingTempF = currentTempF.previousElementSibling
+        correspondingTempF.style.display = 'flex'
+    })
 }
 
 function toggleTemps() {
-    const cTemp = document.querySelectorAll('.c-temp')
-    const fTemp = document.querySelectorAll('.f-temp')
-    const currentTempC = document.querySelector('.current-temp-c')
-    const currentTempF = document.querySelector('.current-temp-f')
-
-    cTemp.forEach((element) => {
-        element.addEventListener('click', () => {
-            toggleForecastTempC(element)
-        })
-    })
-
-    fTemp.forEach((element) => {
-        element.addEventListener('click', () => {
-            toggleForecastTempF(element)
-        })
-    })
-
-    currentTempC.addEventListener('click', () => {
-        toggleCurrentTempC()
-    })
-
-    currentTempF.addEventListener('click', () => {
-        toggleCurrentTempF()
-    })
+    toggleForecastTempC()
+    toggleForecastTempF()
+    toggleCurrentTempC()
+    toggleCurrentTempF()
 }
 
 form = document.querySelector('form')
