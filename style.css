@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Roboto&display=swap');
+
+body {
+    font-family: 'Cabin', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #083344;
+}
+
+.container {
+    background-color: #083344;
+}
+
+form{
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: #fff;
+    margin-right: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.07);
+}
+
+.clear-button {
+    background-color: #ccc;
+    color: #333;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.clear-button:hover {
+    background-color: #999;
+    transform: scale(1.07);
+}
+
+.weather-result {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 50px;
+    justify-items: center; 
+    align-items: start;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.weatherDisplay {
+    background: linear-gradient(to top, #7dd3fc, #0c4a6e);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 10%;
+    text-align: center;
+    transition: background-color 0.5s, box-shadow 0.5s, color 0.5s;
+    display: flex;
+    padding: 20px;
+    border-radius: 25px;
+    flex-direction: column;
+    gap: 7px;
+    height: 200px;
+    font-size: 10px;
+    min-width: 170px;
+    width: 200px;
+}
+.weatherDisplay:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+    color: #333;
+    cursor: pointer;
+}
+
+h5{
+    font-size: 12px;
+    margin: 0;
+    text-align: left;
+}
+
+h3{
+    margin: 0;
+    text-align: left;
+    font-size: 40px;
+}
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.num-days{
+    display: none;
+} 
+
+.weather{
+    margin-top: 20px;
+}
+
+img{
+    width: 70px;
+}
+h4{
+    margin: 0;
+    text-align: left;
+    font-size: 12px;
+}
+h3{
+    margin: 0;
+    text-align: left;
+}
+
+.f-temp,
+.c-temp{
+    font-size: 12px;
+    display: flex;
+    gap: 15px;
+}
+
+.temp-c,
+.temp-f{
+    margin: 0;
+    text-align: left;
+    font-size: 12px;
+}
+
+.f-temp,
+.current-temp-f{
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+@media(prefers-color-scheme: dark) {
+    body {
+        font-family: 'Cabin', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color:  black;
+    }
+
+    .container {
+        background-color: black;
+        color: white;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 10px auto;
+        padding: 20px;
+        background-color: black;
+        color: #333;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid #333;
+    }
+    .weatherDisplay {
+        background: linear-gradient(to top, #7dd3fc, #0c4a6e);
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 10%;
+        text-align: center;
+        transition: background-color 0.5s, box-shadow 0.5s, color 0.5s;
+        display: flex;
+        padding: 20px;
+        border-radius: 25px;
+        flex-direction: column;
+        gap: 7px;
+        height: 200px;
+        font-size: 10px;
+    }
+}

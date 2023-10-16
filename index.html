@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Weather App</h1>
+        </div>
+        <form id="weather-form" action="" novalidate>
+            <div class="location">
+                <label for="location">Kindly input the location:</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            <div class="weather">
+                <label for="weather-type">Select type:</label>
+                <select id="weather-type" name="weather-type" required>
+                    <option value="current" selected>Current Weather</option>
+                    <option value="forecast">Forecast</option>
+                </select>
+            </div>
+            <div class="num-days">
+                <label for="num-days">Number of Days:</label>
+                <input type="number" id="num-days" name="num-days" min="1" max="14" required>
+            </div>
+            <div class="btns">
+                <button class="search-button">Search</button>
+                <button class="clear-button">Clear</button>
+            </div>
+        </form>
+        <div class="weather-result"></div>
+    </div>
+    <script type="text/javascript" src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
