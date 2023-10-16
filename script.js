@@ -62,7 +62,7 @@ function toggleTemps() {
     toggleCurrentTempF()
 }
 
-form = document.querySelector('form')
+const form = document.querySelector('form')
 const daysInput = document.querySelector('.num-days')
 form.addEventListener('change',() =>{
     const searchInput = document.getElementById('weather-type').value
