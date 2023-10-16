@@ -15,6 +15,59 @@ clearBtn.addEventListener('click', (event) =>{
     clearSearch()
 })
 
+function toggleForecastTempC(element) {
+    element.style.display = 'none'
+    const correspondingFTemp = element.nextElementSibling
+    correspondingFTemp.style.display = 'flex'
+}
+
+function toggleForecastTempF(element) {
+    element.style.display = 'none'
+    const correspondingCTemp = element.previousElementSibling
+    correspondingCTemp.style.display = 'flex'
+}
+
+function toggleCurrentTempC() {
+    const currentTempC = document.querySelector('.current-temp-c')
+    currentTempC.style.display = 'none'
+    const correspondingTempC = currentTempC.nextElementSibling
+    correspondingTempC.style.display = 'flex'
+}
+
+function toggleCurrentTempF() {
+    const currentTempF = document.querySelector('.current-temp-f')
+    currentTempF.style.display = 'none'
+    const correspondingTempF = currentTempF.previousElementSibling
+    correspondingTempF.style.display = 'flex'
+}
+
+function toggleTemps() {
+    const cTemp = document.querySelectorAll('.c-temp')
+    const fTemp = document.querySelectorAll('.f-temp')
+    const currentTempC = document.querySelector('.current-temp-c')
+    const currentTempF = document.querySelector('.current-temp-f')
+
+    cTemp.forEach((element) => {
+        element.addEventListener('click', () => {
+            toggleForecastTempC(element)
+        })
+    })
+
+    fTemp.forEach((element) => {
+        element.addEventListener('click', () => {
+            toggleForecastTempF(element)
+        })
+    })
+
+    currentTempC.addEventListener('click', () => {
+        toggleCurrentTempC()
+    })
+
+    currentTempF.addEventListener('click', () => {
+        toggleCurrentTempF()
+    })
+}
+
 form = document.querySelector('form')
 const daysInput = document.querySelector('.num-days')
 form.addEventListener('change',() =>{
@@ -52,63 +105,77 @@ async function getWeatherInfo() {
     }
 }
 
-function getFetchedData(response) {
+async function getFetchedData(response) {
     if (!response.ok) {
-        const errorData = response.json()
+        const errorData = await response.json()
         throw new Error(errorData.error.message)
     }
     return response.json()
+}
+
+function displayCurrentWeather(currentWeather, locationDetails) {
+    const weatherResults = document.querySelector('.weather-result')
+    const weatherDisplay = document.createElement('div')
+    const cTempRound = Math.round(currentWeather.temp_c)
+    const fTempRound = Math.round(currentWeather.temp_f)
+
+    weatherDisplay.className = 'weatherDisplay'
+    weatherDisplay.innerHTML = `
+        <h5>${locationDetails?.name || ''},  ${locationDetails?.country || ''}</h5>
+        <h3 class='current-temp-c'>${cTempRound}°c</h3>
+        <h3 class='current-temp-f'>${fTempRound}°f</h3>
+        <img src='${currentWeather.condition.icon}'>
+        <h4>${currentWeather.condition.text}</h4>
+        <h4>${locationDetails?.localtime || ''}</h4>`
+
+    weatherResults.appendChild(weatherDisplay)
+}
+
+function displayWeatherForecast(forecastdays, locationDetails) {
+    const weatherResults = document.querySelector('.weather-result')
+    forecastdays.forEach((dayReport) => {
+        const dayTemp = dayReport.day
+        const weatherDisplay = document.createElement('div')
+        const cTempHRound = Math.round(dayTemp.maxtemp_c)
+        const cTempLRound = Math.round(dayTemp.mintemp_c)
+        const fTempHRound = Math.round(dayTemp.maxtemp_f)
+        const fTempLRound = Math.round(dayTemp.mintemp_f)
+
+        weatherDisplay.className = 'weatherDisplay'
+        weatherDisplay.innerHTML = `
+            <h5>${locationDetails?.name || ''},  ${locationDetails?.country || ''}</h5>
+            <img src='${dayReport.day.condition.icon}'>
+            <h4>${dayReport.day.condition.text}</h4>
+            <h4>${dayReport.date}</h4>
+            <div class='c-temp'>
+                <h3 class='temp-c'>H: ${cTempHRound}°c</h3>
+                <h3 class='temp-c'>L: ${cTempLRound}°c</h3>
+            </div>
+            <div class='f-temp'>
+                <h3 class='temp-f'>H: ${fTempHRound}°f</h3>
+                <h3 class='temp-f'>L: ${fTempLRound}°f</h3>
+            </div>`
+
+        weatherResults.appendChild(weatherDisplay)
+    })
 }
 
 function displayWeatherInfo(weatherInfo) {
     const weatherResults = document.querySelector('.weather-result')
     weatherResults.style.display = 'grid'
     weatherResults.innerHTML = ''
-    
+
     if (weatherInfo.current) {
         const currentWeather = weatherInfo.current
-        locationDetails = weatherInfo?.location
-        const weatherDisplay = document.createElement('div')
-        const cTempRound = Math.round(currentWeather.temp_c)
-        const fTempRound = Math.round(currentWeather.temp_f)
-        weatherDisplay.className = 'weatherDisplay'
-        weatherDisplay.innerHTML = `
-            <h5>${locationDetails?.name || ''},  ${locationDetails?.country || ''}</h5>
-            <h3 class= 'current-temp-c'>${cTempRound}°c</h3>
-            <h3 class= 'current-temp-f'>${fTempRound}°f</h3>
-            <img src='${currentWeather.condition.icon}'>
-            <h4>${currentWeather.condition.text}</h4>
-            <h4>${locationDetails?.localtime || ''}</h4>`
-        weatherResults.appendChild(weatherDisplay)
-    }  
-    if (weatherInfo.forecast) {
-        forecastdays = weatherInfo.forecast.forecastday
-        locationDetails = weatherInfo?.location;
-                forecastdays.forEach((dayReport) => {
-            dayTemp = dayReport.day
-            const weatherDisplay = document.createElement('div')
-            weatherDisplay.className = 'weatherDisplay'
-            const cTempHRound = Math.round(dayTemp.maxtemp_c)
-            const cTempLRound = Math.round(dayTemp.mintemp_c)
-            const fTempHRound = Math.round(dayTemp.maxtemp_f)
-            const fTempLRound = Math.round(dayTemp.mintemp_f)
-            weatherDisplay.innerHTML = `
-                <h5>${locationDetails?.name || ''},  ${locationDetails?.country || ''}</h5>
-                <img src='${dayReport.day.condition.icon}'>
-                <h4>${dayReport.day.condition.text}</h4>
-                <h4>${dayReport.date}</h4>
-                <div class='c-temp'>
-                    <h3 class='temp-c'>H: ${cTempHRound}°c</h3>
-                    <h3 class='temp-c'>L: ${cTempLRound}°c</h3>
-                    </div>
-                    <div class='f-temp'>
-                    <h3 class='temp-f'>H: ${fTempHRound}°f</h3>
-                    <h3 class='temp-f'>L: ${fTempLRound}°f</h3>
-                </div>`
-            weatherResults.appendChild(weatherDisplay)
-        })     
+        const locationDetails = weatherInfo?.location
+        displayCurrentWeather(currentWeather, locationDetails)
     }
-    toggleTemp()
+    if (weatherInfo.forecast) {
+        const forecastdays = weatherInfo.forecast.forecastday
+        const locationDetails = weatherInfo?.location
+        displayWeatherForecast(forecastdays, locationDetails)
+    }
+    toggleTemps()
 }
 
 function onError(error){
@@ -128,7 +195,6 @@ function errorDisplay(){
 }
 
 function clearSearch(){
-    form = document.querySelector('form')
     const days = document.querySelector('.num-days')
     form.reset()
     days.style.display = 'none'
@@ -139,39 +205,4 @@ function resetDisplay(){
     if(weatherDisplayDiv){
         weatherDisplayDiv.remove()
     }
-}
-
-function toggleTemp(){
-    const cTemp = document.querySelectorAll('.c-temp')
-    const fTemp = document.querySelectorAll('.f-temp')
-    const currentTempC = document.querySelector('.current-temp-c')
-    const currentTempF = document.querySelector('.current-temp-f')
-    
-    cTemp.forEach((element) => {
-        element.addEventListener('click', () => {
-            element.style.display = 'none'
-            const correspondingFTemp = element.nextElementSibling
-            correspondingFTemp.style.display = 'flex'
-        })
-    })
-    
-    fTemp.forEach((element) => {
-        element.addEventListener('click', () => {
-            element.style.display = 'none'
-            const correspondingCTemp = element.previousElementSibling
-            correspondingCTemp.style.display = 'flex'
-        })
-    })
-
-    currentTempC.addEventListener('click', () =>{
-        currentTempC.style.display = 'none'
-        const correspondingTempF = currentTempC.nextElementSibling
-        correspondingTempF.style.display = 'flex'
-    })
-
-    currentTempF.addEventListener('click', () =>{
-        currentTempF.style.display = 'none'
-        const correspondingTempF = currentTempF.previousElementSibling
-        correspondingTempF.style.display = 'flex'
-    })
 }

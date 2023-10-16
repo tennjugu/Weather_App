@@ -112,7 +112,7 @@ button {
     padding: 20px;
     border-radius: 25px;
     flex-direction: column;
-    gap: 10px;
+    gap: 7px;
     height: 200px;
     font-size: 10px;
     min-width: 170px;
@@ -223,9 +223,8 @@ h3{
         padding: 20px;
         border-radius: 25px;
         flex-direction: column;
-        gap: 10px;
+        gap: 7px;
         height: 200px;
         font-size: 10px;
-        min-width: max-content;
     }
 }
